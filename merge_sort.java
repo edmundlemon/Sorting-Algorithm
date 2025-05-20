@@ -72,7 +72,7 @@ public class merge_sort extends CsvReader {
 				System.err.println("Error writing to file: " + e.getMessage());
 			}
 		} else {
-			System.out.println("No data to display.");
-		}
+				System.out.println("No data to display.");
+			}
 	}
 }
