@@ -8,13 +8,23 @@ import java.util.List;
 public class CsvReader {
     
     // Static nested class to hold data
-    public static class DataPair {
+    public static class DataPair implements Comparable<DataPair> {
         public final int id;
         public final String value;
 
         public DataPair(int id, String value) {
             this.id = id;
             this.value = value;
+        }
+            
+        @Override
+        public int compareTo(DataPair other) {
+            return Integer.compare(this.id, other.id);
+        }
+
+        @Override
+        public String toString() {
+            return id + "/" + value;
         }
     }
 
@@ -96,4 +106,6 @@ public class CsvReader {
         return merged;
         
     }
+
+
 }
