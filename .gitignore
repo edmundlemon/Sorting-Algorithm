@@ -3,3 +3,4 @@ dataset_*.csv
 output.txt
 output_*.txt
 *.txt
+*.csv

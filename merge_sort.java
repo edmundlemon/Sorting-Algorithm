@@ -55,7 +55,6 @@ public class merge_sort extends CsvReader {
 		
 		if (data != null) {
 
-			// System.out.println("ID" + data.get(2).id + ", Value: " + data.get(2).value);
 			long startTime = System.nanoTime();
 			data = reader.MergeSort(data);
 			System.out.println("Data Size: " + data.size());
@@ -64,10 +63,10 @@ public class merge_sort extends CsvReader {
 			// convert the time to seconds with float
 			float durationInSeconds = (float) duration / 1000000000; // convert to seconds
 			System.out.println("Sorting took " + durationInSeconds + " seconds.");
-			// System.out.println("Sorted data:");
 
 			try {
-				reader.writeValuesToTxt(data, "output.txt");
+				String filename = "merge_sort_" + data.size() + ".csv";
+				reader.writeValuesToTxt(data, filename);
 			} catch (IOException e) {
 				System.err.println("Error writing to file: " + e.getMessage());
 			}
