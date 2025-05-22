@@ -18,10 +18,8 @@ public class merge_sort_step extends CsvReader {
 		List<DataPair> left = MergeSortWithSteps(data.subList(0, mid), snapshots);
 
 		List<DataPair> right = MergeSortWithSteps(data.subList(mid, data.size()), snapshots);
-		// System.out.println("Left Tree " + count);
 
 		List<DataPair> merged = merge(left, right, snapshots);
-		// snapshots.add(new ArrayList<>(merged));
 		return merged;
 	}
 	public void mergeSortInPlace(List<DataPair> list, List<DataPair> aux, int left, int right, List<List<DataPair>> snapshots) {
@@ -87,14 +85,17 @@ public class merge_sort_step extends CsvReader {
 		int startingRow = 0;
 		int endingRow = 0;
 		try (Scanner scanner = new Scanner(System.in)) {
+			// Requesting user to provide path to file to be sorted
 			System.out.print("Enter the path to the CSV file: ");
 			String csvFile = scanner.nextLine();
 			data = reader.readCsv(csvFile);
+			// Requesting user to provide rows to be sorted
 			System.out.print("Enter the starting row: ");
 			startingRow = scanner.nextInt();
 			System.out.print("Enter the ending row: ");
 			endingRow = scanner.nextInt();
 			data = reader.readCsvWithStartAndEnd(csvFile, startingRow, endingRow);
+			// Copying the exact copy of data to aux for sorting purpose
 			aux = new ArrayList<>(data);
 			// Now you can merge-sort this data
 		} catch (IOException e) {
@@ -103,14 +104,15 @@ public class merge_sort_step extends CsvReader {
 		
 		if (data != null ) {
 
-			// System.out.println("ID" + data.get(2).id + ", Value: " + data.get(2).value);
-			// data = reader.MergeSort(data);
 			merge_sort_step sorter = new merge_sort_step();
+			// Creating a snapshot to keep track of all steps as it is a recursive function
 			List<List<DataPair>> snapshots = new ArrayList<>();
-			// data = sorter.MergeSortWithSteps(data, snapshots);
+			// Copy the initial data into the snapshot
 			snapshots.add(new ArrayList<>(data));
 			sorter.mergeSortInPlace(data, aux, 0, data.size(), snapshots);
+			// Naming the output file
 			String filename = "merge_sort_step_" + startingRow + "_" + endingRow + ".txt";
+			// Output the file
 			try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
 				for (List<DataPair> snapshot : snapshots) {
 					writer.write("[");
