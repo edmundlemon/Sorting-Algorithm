@@ -49,7 +49,7 @@ def get_input_dataset_from_file():
     return dataset
 
 def write_sorted_output_to_csv(sorted_data):
-    output_filename = f"Python Merge Sort_{len(sorted_data)}.csv"
+    output_filename = f"python_merge_sort_{len(sorted_data)}.csv"
     try:
         with open(output_filename, mode='w', newline='') as file:
             writer = csv.writer(file)
