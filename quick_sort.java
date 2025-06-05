@@ -49,12 +49,12 @@ public class quick_sort {
 			long startTime = System.nanoTime();
 			data = new quick_sort().QuickSort(data);
 			long endTime = System.nanoTime();
-			System.out.println("Execution time: " + (endTime - startTime) + " ns");
+			double durationInSeconds = (endTime - startTime) / 1_000_000_000.0;
+			System.out.println("Execution time: " + durationInSeconds + " seconds");
 			try {
 				// Write as CSV format, not TXT
 				String filename = "quick_sort_" + data.size() + ".csv";
 				try (FileWriter writer = new FileWriter(filename)) {
-					writer.write("integer,string\n");
 					for (DataPair pair : data) {
 						writer.write(pair.id + "," + pair.value + "\n");
 					}
