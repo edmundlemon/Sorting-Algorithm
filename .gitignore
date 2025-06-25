@@ -4,3 +4,4 @@ output.txt
 output_*.txt
 *.txt
 *.csv
+*.class
