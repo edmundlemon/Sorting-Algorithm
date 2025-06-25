@@ -32,7 +32,7 @@ public class dataset_generator {
             int count = 0;
 
             while (count < size) {
-                int num = random.nextInt(1_000_000_000);
+                int num = random.nextInt(2_000_000_000);
                 if (generatedIntegers.add(num)) {
                     String randomString = generateRandomString(3, 10);
                     writer.write(num + "," + randomString + "\n");
