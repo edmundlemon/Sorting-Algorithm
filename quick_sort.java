@@ -48,7 +48,8 @@ public class quick_sort {
 			long startTime = System.nanoTime();
 			data = new quick_sort().QuickSort(data);
 			long endTime = System.nanoTime();
-			System.out.println("Execution time: " + (endTime - startTime) + " ns");
+			float timeTaken = (float) (endTime - startTime)/1000000000;
+			System.out.println("Execution time: " + timeTaken + " seconds");
 			
 			try {
 				reader.writeValuesToTxt(data, "output_quicksort.txt");
