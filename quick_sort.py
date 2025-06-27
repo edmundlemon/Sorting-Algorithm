@@ -64,7 +64,7 @@ def main():
         print(f"Execution time: {end_time - start_time:.6f} seconds")
 
         try:
-            filename = f"quick_sort_{len(data)}.csv"
+            filename = f"python_quick_sort_{len(data)}.csv"
             reader.write_values_to_txt(data, filename)
         except Exception as e:
             print(f"Error writing to file: {e}")

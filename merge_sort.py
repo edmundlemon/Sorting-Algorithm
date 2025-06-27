@@ -71,11 +71,6 @@ if __name__ == "__main__":
         end = time.time()
         runtime = end - start
 
-        if runtime > 60:
-            mins = int(runtime // 60)
-            secs = runtime % 60
-            print(f"\nTotal Sorting Runtime: {mins} minutes {secs:.2f} seconds")
-        else:
-            print(f"\nTotal Sorting Runtime: {runtime:.7f} seconds")
+        print(f"\nTotal Sorting Runtime: {runtime:.6f} seconds")
 
         write_sorted_output_to_csv(sorted_dataset)
