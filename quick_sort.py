@@ -58,13 +58,14 @@ def main():
 
     if data:
         sorter = QuickSort()
-        start_time = time.time_ns()
+        start_time = time.time()
         data = sorter.quick_sort(data)
-        end_time = time.time_ns()
-        print(f"Execution time: {end_time - start_time} ns")
+        end_time = time.time()
+        print(f"Execution time: {end_time - start_time:.6f} seconds")
 
         try:
-            reader.write_values_to_txt(data, "output_quicksort.txt")
+            filename = f"quick_sort_{len(data)}.csv"
+            reader.write_values_to_txt(data, filename)
         except Exception as e:
             print(f"Error writing to file: {e}")
     else:
