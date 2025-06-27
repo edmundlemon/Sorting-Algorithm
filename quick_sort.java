@@ -2,6 +2,7 @@ import utils.CsvReader;
 import utils.CsvReader.DataPair;
 import java.util.List;
 import java.util.ArrayList;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -48,11 +49,16 @@ public class quick_sort {
 			long startTime = System.nanoTime();
 			data = new quick_sort().QuickSort(data);
 			long endTime = System.nanoTime();
-			float timeTaken = (float) (endTime - startTime)/1000000000;
-			System.out.println("Execution time: " + timeTaken + " seconds");
-			
+			double durationInSeconds = (endTime - startTime) / 1_000_000_000.0;
+			System.out.println("Execution time: " + durationInSeconds + " seconds");
 			try {
-				reader.writeValuesToTxt(data, "output_quicksort.txt");
+				// Write as CSV format, not TXT
+				String filename = "quick_sort_" + data.size() + ".csv";
+				try (FileWriter writer = new FileWriter(filename)) {
+					for (DataPair pair : data) {
+						writer.write(pair.id + "," + pair.value + "\n");
+					}
+				}
 			} catch (IOException e) {
 				System.err.println("Error writing to file: " + e.getMessage());
 			}
