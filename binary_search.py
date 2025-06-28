@@ -86,9 +86,9 @@ def main():
     average_time = binary_searcher.measure_binary_search(data, average_case_target)
     
     # Convert nanoseconds to seconds
-    best_time_seconds = best_time / 1_000_000_000
-    worst_time_seconds = worst_time / 1_000_000_000
-    average_time_seconds = average_time / 1_000_000_000
+    best_time_seconds = best_time / 1_000_000
+    worst_time_seconds = worst_time / 1_000_000
+    average_time_seconds = average_time / 1_000_000
     
     # Write results to file
     output_filename = f"binary_search_{data_size}.txt"
@@ -97,9 +97,9 @@ def main():
         with open(output_filename, 'w') as writer:
             writer.write(f"Binary Search Performance Analysis\n")
             writer.write(f"Dataset size: {data_size}\n")
-            writer.write(f"Best Case O(1): {best_time_seconds:.9f} seconds\n")
-            writer.write(f"Worst Case O(log n): {worst_time_seconds:.9f} seconds\n")
-            writer.write(f"Average Case O(log n): {average_time_seconds:.9f} seconds\n")
+            writer.write(f"Best Case O(1): {best_time_seconds:.9f} ms\n")
+            writer.write(f"Worst Case O(log n): {worst_time_seconds:.9f} ms\n")
+            writer.write(f"Average Case O(log n): {average_time_seconds:.9f} ms\n")
             writer.write(f"\nTest Details:\n")
             writer.write(f"Best case target: {best_case_target} (middle element)\n")
             writer.write(f"Worst case target: {worst_case_target} (not found)\n")
