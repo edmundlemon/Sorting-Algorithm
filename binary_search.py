@@ -69,7 +69,7 @@ def main():
     data_size = len(data)
     
     # Best case: middle element (O(1) - found immediately)
-    best_case_target = data[data_size // 2].id
+    best_case_target = data[(data_size-1) // 2].id
     
     # Worst case: element not in array (O(log n) - full traversal)
     worst_case_target = -1  # Use -1 as it's unlikely to be in the dataset
