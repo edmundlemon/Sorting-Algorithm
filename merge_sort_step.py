@@ -17,7 +17,7 @@ def merge_sort(data, aux, left, right, snapshots):
 
 def merge_and_snapshot(data, aux, left, mid, right, snapshots):
     i, j, k = left, mid, left
-
+    print("Current left is : ", i, "Current mid is : ", mid, "Current right is : ", right)
     while i < mid and j < right:
         if data[i][0] <= data[j][0]:
             aux[k] = data[i]
@@ -65,9 +65,15 @@ def get_input_dataset_from_file(filename, startingRow, endingRow):
     dataset = []
     try:
         with open(filename, 'r') as file:
-            i = startingRow
+            # i = startingRow
+            i = 0
+            # Skip lines until the starting row
+            while i < startingRow-1:
+                next(file)
+                i += 1
+            # Read the dataset from the file
             for line in file:
-                if i > endingRow and endingRow > 0:
+                if i >= endingRow and endingRow > 0:
                     break
                 if ',' not in line:
                     continue 
@@ -122,7 +128,10 @@ if __name__ == "__main__":
     else:
         snapshots.append(list(dataset))
         start = time.time()
-        sorted_dataset = merge_sort(dataset, aux, startingRow - 1, endingRow, snapshots)
+        # Ensure 'right' does not exceed the length of the dataset
+        # right_bound = min(len(dataset), endingRow - startingRow + 1 if endingRow > 0 else len(dataset))
+        right_bound = len(dataset)
+        sorted_dataset = merge_sort(dataset, aux, 0, right_bound, snapshots)
         end = time.time()
         runtime = end - start
 
