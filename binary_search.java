@@ -64,24 +64,24 @@ public class binary_search extends CsvReader {
 				binary.binarySearch(data, bestCase);
 				long bestEndTime = System.nanoTime();
 				long duration = bestEndTime - bestStartTime;
-				float bestDurationInSeconds = (float) duration / 1000000000; // convert to seconds
-				writer.write("Best Case O(1) " + bestDurationInSeconds + " seconds.");
+				float bestDurationInSeconds = (float) duration / 1000000; // convert to ms
+				writer.write("Best Case O(1) " + bestDurationInSeconds + " ms.");
 				writer.newLine();
 
 				long worstStartTime = System.nanoTime();
 				binary.binarySearch(data, worstCase);
 				long worstEndTime = System.nanoTime();
 				duration = worstEndTime - worstStartTime;
-				float worstDurationInSeconds = (float) duration / 1000000000; // convert to seconds
-				writer.write("Worst Case O(log n) " + worstDurationInSeconds + " seconds.");
+				float worstDurationInSeconds = (float) duration / 1000000; // convert to ms
+				writer.write("Worst Case O(log n) " + worstDurationInSeconds + " ms.");
 				writer.newLine();
 
 				long averageStartTime = System.nanoTime();
 				binary.binarySearch(data, averageCase);
 				long averageEndTime = System.nanoTime();
 				duration = averageEndTime - averageStartTime;
-				float averageDurationInSeconds = (float) duration / 1000000000; // convert to seconds
-				writer.write("Average Case O(log n) " + averageDurationInSeconds + " seconds.");
+				float averageDurationInSeconds = (float) duration / 1000000; // convert to ms
+				writer.write("Average Case O(log n) " + averageDurationInSeconds + " ms.");
 				writer.newLine();
 			} catch (IOException e){
 				e.printStackTrace();
