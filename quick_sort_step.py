@@ -4,24 +4,28 @@ from typing import List, Tuple
 class CsvReader:
     class DataPair:
         def __init__(self, key: str, value: str):
-            self.key = key
+            self.id = int(key)
             self.value = value
 
         def __lt__(self, other):
-            return self.key < other.key
+            return self.id < other.id
 
         def __le__(self, other):
-            return self.key <= other.key
+            return self.id <= other.id
 
         def __repr__(self):
-            return f"({self.key},{self.value})"
+            return f"{self.id}/{self.value}"
 
-    def read_csv_with_start_and_end(self, filepath: str, start: int, end: int) -> List['CsvReader.DataPair']:
+    def read_csv_with_start_and_end(self, filepath: str, start: int, end: int):
         data = []
         with open(filepath, newline='', encoding='utf-8') as csvfile:
             reader = csv.reader(csvfile)
-            rows = list(reader)[start:end+1]
-            for row in rows:
+            all_rows = list(reader)
+            start_idx = start - 1
+            end_idx = end
+
+            for i in range(start_idx, min(end_idx, len(all_rows))):
+                row = all_rows[i]
                 if len(row) >= 2:
                     data.append(self.DataPair(row[0], row[1]))
         return data
@@ -39,11 +43,11 @@ def quick_sort(data: List[CsvReader.DataPair], low: int, high: int, writer):
 
 
 def partition(data: List[CsvReader.DataPair], low: int, high: int) -> int:
-    pivot = data[high]
+    pivot = data[high]  # ✅ Last element as pivot
     i = low - 1
 
     for j in range(low, high):
-        if data[j] <= pivot:
+        if data[j].id <= pivot.id:  # ✅ Compare .id values (integers)
             i += 1
             data[i], data[j] = data[j], data[i]
 
@@ -53,9 +57,9 @@ def partition(data: List[CsvReader.DataPair], low: int, high: int) -> int:
 
 def main():
     reader = CsvReader()
+    csv_file = input("Enter the path to the CSV file: ")
     starting_row = int(input("Enter the starting row: "))
     ending_row = int(input("Enter the ending row: "))
-    csv_file = input("Enter the path to the CSV file: ")
 
     try:
         data = reader.read_csv_with_start_and_end(csv_file, starting_row, ending_row)
@@ -65,7 +69,7 @@ def main():
         return
 
     if data:
-        filename = f"quick_sort_step_{starting_row}_{ending_row}.txt"
+        filename = f"python_quick_sort_step_{starting_row}_{ending_row}.txt"
         try:
             with open(filename, 'w', encoding='utf-8') as writer:
                 writer.write(f"{data}\n")  # initial state

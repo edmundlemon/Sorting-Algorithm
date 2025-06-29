@@ -17,7 +17,6 @@ def merge_sort(data, aux, left, right, snapshots):
 
 def merge_and_snapshot(data, aux, left, mid, right, snapshots):
     i, j, k = left, mid, left
-    print("Current left is : ", i, "Current mid is : ", mid, "Current right is : ", right)
     while i < mid and j < right:
         if data[i][0] <= data[j][0]:
             aux[k] = data[i]
