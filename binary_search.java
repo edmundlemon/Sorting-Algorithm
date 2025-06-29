@@ -85,9 +85,9 @@ public class binary_search extends CsvReader {
 				writer.newLine();
 				writer.newLine();
 				writer.write("Test Details:\n");
-				writer.write("Best Case Target: " + bestCase + " Middle Element\n");
-				writer.write("Worst Case Target: " + worstCase + " First Element Element\n");
-				writer.write("Average Case Target: " + averageCase + " Random Element\n");
+				writer.write("Best Case Target: " + bestCase + " (Middle Element)\n");
+				writer.write("Worst Case Target: " + worstCase + " (First Element)\n");
+				writer.write("Average Case Target: " + averageCase + " (Random Element)\n");
 			} catch (IOException e){
 				e.printStackTrace();
 			}
