@@ -83,6 +83,11 @@ public class binary_search extends CsvReader {
 				float averageDurationInSeconds = (float) duration / 1000000; // convert to seconds
 				writer.write("Average Case O(log n) " + averageDurationInSeconds + " ms.");
 				writer.newLine();
+				writer.newLine();
+				writer.write("Test Details:\n");
+				writer.write("Best Case Target: " + bestCase + " Middle Element\n");
+				writer.write("Worst Case Target: " + worstCase + " First Element Element\n");
+				writer.write("Average Case Target: " + averageCase + " Random Element\n");
 			} catch (IOException e){
 				e.printStackTrace();
 			}
